@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxView xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>SBProjTransPostingLatestView</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+public class SBProjTransPostingLatestView extends common
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>computedPurchaseOrderNumber</Name>
+				<Source><![CDATA[
+        /// <summary>
+    ///
+    /// </summary>
+    public static str computedPurchaseOrderNumber()
+    {
+        str transIdExpr =
+        SysComputedColumn::returnField(viewStr(SBProjTransPostingLatestView),
+            identifierStr(ProjPostedTransTable), fieldStr(ProjPostedTransTable, TransId));
+
+        str inventTransIdExpr =
+        SysComputedColumn::returnField(viewStr(SBProjTransPostingLatestView),
+            identifierStr(ProjPostedTransTable), fieldStr(ProjPostedTransTable, InventTransId));
+
+        // NOTE: Use the real D365FO table/field names for PO lines in your environment.
+        // In D365FO, PO lines are typically in PurchLine (not "purchaseorderlines").
+        // Map PurchId/LineNumber to your target output columns.
+
+        return strFmt(@"
+        COALESCE(
+            (SELECT TOP 1 pl.PURCHID
+               FROM PURCHLINE pl
+              WHERE pl.PROJTRANSID = %1
+              ORDER BY pl.RECID DESC),
+            (SELECT TOP 1 pl2.PURCHID
+               FROM PURCHLINE pl2
+              WHERE pl2.INVENTTRANSID = %2
+              ORDER BY pl2.RECID DESC)
+        )",
+        transIdExpr,
+        inventTransIdExpr);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>computedPurchaseOrderLineNumber</Name>
+				<Source><![CDATA[
+    public static str computedPurchaseOrderLineNumber()
+    {
+        str transIdExpr =
+        SysComputedColumn::returnField(viewStr(SBProjTransPostingLatestView),
+            identifierStr(ProjPostedTransTable), fieldStr(ProjPostedTransTable, TransId));
+
+        str inventTransIdExpr =
+        SysComputedColumn::returnField(viewStr(SBProjTransPostingLatestView),
+            identifierStr(ProjPostedTransTable), fieldStr(ProjPostedTransTable, InventTransId));
+
+        return strFmt(@"
+        COALESCE(
+            (SELECT TOP 1 pl.LINENUMBER
+               FROM PURCHLINE pl
+              WHERE pl.PROJTRANSID = %1
+              ORDER BY pl.RECID DESC),
+            (SELECT TOP 1 pl2.LINENUMBER
+               FROM PURCHLINE pl2
+              WHERE pl2.INVENTTRANSID = %2
+              ORDER BY pl2.RECID DESC)
+        )",
+        transIdExpr,
+        inventTransIdExpr);
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+	<SubscriberAccessLevel>
+		<Read>Allow</Read>
+	</SubscriberAccessLevel>
+	<Query>SBProjTransPostingLatestQuery</Query>
+	<FieldGroups>
+		<AxTableFieldGroup>
+			<Name>AutoReport</Name>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoLookup</Name>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoIdentification</Name>
+			<AutoPopulate>Yes</AutoPopulate>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoSummary</Name>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoBrowse</Name>
+			<Fields />
+		</AxTableFieldGroup>
+	</FieldGroups>
+	<Fields>
+		<AxViewField xmlns=""
+			i:type="AxViewFieldBound">
+			<Name>TransId</Name>
+			<DataField>TransId</DataField>
+			<DataSource>ProjPostedTransTable</DataSource>
+		</AxViewField>
+		<AxViewField xmlns=""
+			i:type="AxViewFieldBound">
+			<Name>InventTransId</Name>
+			<DataField>InventTransId</DataField>
+			<DataSource>ProjPostedTransTable</DataSource>
+		</AxViewField>
+		<AxViewField xmlns=""
+			i:type="AxViewFieldBound">
+			<Name>TransDate</Name>
+			<DataField>TransDate</DataField>
+			<DataSource>ProjPostedTransTable</DataSource>
+		</AxViewField>
+		<AxViewField xmlns=""
+			i:type="AxViewFieldBound">
+			<Name>ProjId</Name>
+			<DataField>ProjId</DataField>
+			<DataSource>ProjPostedTransTable</DataSource>
+		</AxViewField>
+		<AxViewField xmlns=""
+			i:type="AxViewFieldBound">
+			<Name>ActivityNumber</Name>
+			<DataField>ActivityNumber</DataField>
+			<DataSource>ProjPostedTransTable</DataSource>
+		</AxViewField>
+		<AxViewField xmlns=""
+			i:type="AxViewFieldBound">
+			<Name>CategoryId</Name>
+			<DataField>CategoryId</DataField>
+			<DataSource>ProjPostedTransTable</DataSource>
+		</AxViewField>
+		<AxViewField xmlns=""
+			i:type="AxViewFieldBound">
+			<Name>LinePropertyId</Name>
+			<DataField>LinePropertyId</DataField>
+			<DataSource>ProjPostedTransTable</DataSource>
+		</AxViewField>
+		<AxViewField xmlns=""
+			i:type="AxViewFieldBound">
+			<Name>ItemId</Name>
+			<DataField>ItemId</DataField>
+			<DataSource>ProjPostedTransTable</DataSource>
+		</AxViewField>
+		<AxViewField xmlns=""
+			i:type="AxViewFieldBound">
+			<Name>Qty</Name>
+			<DataField>Qty</DataField>
+			<DataSource>ProjPostedTransTable</DataSource>
+		</AxViewField>
+		<AxViewField xmlns=""
+			i:type="AxViewFieldBound">
+			<Name>CurrencyId</Name>
+			<DataField>CurrencyId</DataField>
+			<DataSource>ProjPostedTransTable</DataSource>
+		</AxViewField>
+		<AxViewField xmlns=""
+			i:type="AxViewFieldBound">
+			<Name>CurrencyIdCost</Name>
+			<DataField>CurrencyIdCost</DataField>
+			<DataSource>ProjPostedTransTable</DataSource>
+		</AxViewField>
+		<AxViewField xmlns=""
+			i:type="AxViewFieldBound">
+			<Name>TotalCostAmountCur</Name>
+			<DataField>TotalCostAmountCur</DataField>
+			<DataSource>ProjPostedTransTable</DataSource>
+		</AxViewField>
+		<AxViewField xmlns=""
+			i:type="AxViewFieldBound">
+			<Name>Txt</Name>
+			<DataField>Txt</DataField>
+			<DataSource>ProjPostedTransTable</DataSource>
+		</AxViewField>
+		<AxViewField xmlns=""
+			i:type="AxViewFieldBound">
+			<Name>VendorAccount</Name>
+			<DataField>VendorAccount</DataField>
+			<DataSource>ProjPostedTransTable</DataSource>
+		</AxViewField>
+		<AxViewField xmlns=""
+			i:type="AxViewFieldBound">
+			<Name>VendorName</Name>
+			<DataField>VendorName</DataField>
+			<DataSource>ProjPostedTransTable</DataSource>
+		</AxViewField>
+		<AxViewField xmlns=""
+			i:type="AxViewFieldComputedString">
+			<Name>PurchaseOrderNumber</Name>
+			<ExtendedDataType>PurchId</ExtendedDataType>
+			<ViewMethod>computedPurchaseOrderNumber</ViewMethod>
+			<StringSize>20</StringSize>
+		</AxViewField>
+		<AxViewField xmlns=""
+			i:type="AxViewFieldComputedInt64">
+			<Name>LineNumber</Name>
+			<ExtendedDataType>TradeLineNumber</ExtendedDataType>
+			<ViewMethod>computedPurchaseOrderLineNumber</ViewMethod>
+		</AxViewField>
+		<AxViewField xmlns=""
+			i:type="AxViewFieldBound">
+			<Name>TransRecId</Name>
+			<DataField>RecId</DataField>
+			<DataSource>ProjPostedTransTable</DataSource>
+		</AxViewField>
+	</Fields>
+	<Indexes>
+		<AxViewIndex>
+			<Name>Index</Name>
+			<Fields>
+				<AxViewIndexField>
+					<DataField>TransRecId</DataField>
+				</AxViewIndexField>
+			</Fields>
+		</AxViewIndex>
+	</Indexes>
+	<Mappings />
+	<Relations />
+	<StateMachines />
+	<ViewMetadata>
+		<Name>Metadata</Name>
+		<SourceCode>
+			<Methods />
+		</SourceCode>
+		<DataSources />
+	</ViewMetadata>
+</AxView>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxDataEntityView xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>SBEntAssetMaintenanceWorkOrderLineHourForecastEntity</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+public class SBEntAssetMaintenanceWorkOrderLineHourForecastEntity extends common
+{
+}
+]]></Declaration>
+		<Methods />
+	</SourceCode>
+	<ConfigurationKey>Project</ConfigurationKey>
+	<FormRef>ProjForecastEmpl</FormRef>
+	<Label>@SBLabel:SBWorkOrderJobHourForecast</Label>
+	<Tags>Forecast</Tags>
+	<DataManagementEnabled>Yes</DataManagementEnabled>
+	<DataManagementStagingTable>SBEntAssetMaintenanceWorkOrderLineHourForecastStaging</DataManagementStagingTable>
+	<EntityCategory>Transaction</EntityCategory>
+	<IsPublic>Yes</IsPublic>
+	<Modules>ProjectManagementAndAccounting</Modules>
+	<PrimaryCompanyContext>DataAreaId</PrimaryCompanyContext>
+	<PrimaryKey>EntityKey</PrimaryKey>
+	<PublicCollectionName>SBEntAssetMaintenanceWorkOrderLineHourForecasts</PublicCollectionName>
+	<PublicEntityName>SBEntAssetMaintenanceWorkOrderLineHourForecast</PublicEntityName>
+	<DeleteActions />
+	<FieldGroups>
+		<AxTableFieldGroup>
+			<Name>AutoReport</Name>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoLookup</Name>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoIdentification</Name>
+			<AutoPopulate>Yes</AutoPopulate>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoSummary</Name>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoBrowse</Name>
+			<Fields />
+		</AxTableFieldGroup>
+	</FieldGroups>
+	<Fields>
+		<AxDataEntityViewField xmlns=""
+			i:type="AxDataEntityViewMappedField">
+			<Name>WorkOrderId</Name>
+			<DataField>WorkOrderId</DataField>
+			<DataSource>EntAssetWorkOrderTable</DataSource>
+		</AxDataEntityViewField>
+		<AxDataEntityViewField xmlns=""
+			i:type="AxDataEntityViewMappedField">
+			<Name>WorkOrderLineNumber</Name>
+			<DataField>LineNumber</DataField>
+			<DataSource>EntAssetWorkOrderLine</DataSource>
+		</AxDataEntityViewField>
+		<AxDataEntityViewField xmlns=""
+			i:type="AxDataEntityViewMappedField">
+			<Name>ForeCastHours</Name>
+			<DataField>Qty</DataField>
+			<DataSource>ProjForecastEmpl</DataSource>
+		</AxDataEntityViewField>
+	</Fields>
+	<Keys>
+		<AxDataEntityViewKey>
+			<Name>EntityKey</Name>
+			<Fields>
+				<AxDataEntityViewKeyField>
+					<DataField>WorkOrderId</DataField>
+				</AxDataEntityViewKeyField>
+			</Fields>
+		</AxDataEntityViewKey>
+	</Keys>
+	<Mappings />
+	<Ranges />
+	<Relations />
+	<StateMachines />
+	<ViewMetadata>
+		<Name>Metadata</Name>
+		<SourceCode>
+			<Methods>
+				<Method>
+					<Name>classDeclaration</Name>
+					<Source><![CDATA[
+[Query]
+public class Metadata extends QueryRun
+{
+}
+]]></Source>
+				</Method>
+			</Methods>
+		</SourceCode>
+		<DataSources>
+			<AxQuerySimpleRootDataSource>
+				<Name>EntAssetWorkOrderTable</Name>
+				<DynamicFields>Yes</DynamicFields>
+				<Table>EntAssetWorkOrderTable</Table>
+				<DataSources>
+					<AxQuerySimpleEmbeddedDataSource>
+						<Name>EntAssetWorkOrderLine</Name>
+						<DynamicFields>Yes</DynamicFields>
+						<IsReadOnly>Yes</IsReadOnly>
+						<Table>EntAssetWorkOrderLine</Table>
+						<DataSources />
+						<DerivedDataSources />
+						<Fields />
+						<Ranges />
+						<FetchMode>OneToN</FetchMode>
+						<Relations>
+							<AxQuerySimpleDataSourceRelation>
+								<Name>QueryDataSourceRelation1</Name>
+								<Field>RecId</Field>
+								<JoinDataSource>EntAssetWorkOrderTable</JoinDataSource>
+								<RelatedField>WorkOrder</RelatedField>
+							</AxQuerySimpleDataSourceRelation>
+						</Relations>
+					</AxQuerySimpleEmbeddedDataSource>
+					<AxQuerySimpleEmbeddedDataSource>
+						<Name>ProjForecastEmpl</Name>
+						<DynamicFields>Yes</DynamicFields>
+						<IsReadOnly>Yes</IsReadOnly>
+						<Table>ProjForecastEmpl</Table>
+						<DataSources />
+						<DerivedDataSources />
+						<Fields />
+						<Ranges />
+						<JoinMode>OuterJoin</JoinMode>
+						<Relations>
+							<AxQuerySimpleDataSourceRelation>
+								<Name>QueryDataSourceRelation1</Name>
+								<Field>ProjId</Field>
+								<JoinDataSource>EntAssetWorkOrderLine</JoinDataSource>
+								<RelatedField>ProjId</RelatedField>
+							</AxQuerySimpleDataSourceRelation>
+							<AxQuerySimpleDataSourceRelation>
+								<Name>QueryDataSourceRelation2</Name>
+								<Field>ProjActivity</Field>
+								<JoinDataSource>EntAssetWorkOrderLine</JoinDataSource>
+								<RelatedField>ActivityNumber</RelatedField>
+							</AxQuerySimpleDataSourceRelation>
+						</Relations>
+					</AxQuerySimpleEmbeddedDataSource>
+				</DataSources>
+				<DerivedDataSources />
+				<Fields />
+				<Ranges />
+				<GroupBy />
+				<Having />
+				<OrderBy />
+			</AxQuerySimpleRootDataSource>
+		</DataSources>
+	</ViewMetadata>
+</AxDataEntityView>

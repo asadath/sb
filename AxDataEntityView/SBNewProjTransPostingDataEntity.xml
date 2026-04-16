@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxDataEntityView xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>SBNewProjTransPostingDataEntity</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+public class SBNewProjTransPostingDataEntity extends common
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>postLoad</Name>
+				<Source><![CDATA[
+    /// <summary>
+    ///
+    /// </summary>
+    public void postLoad()
+    {
+        ProjTransPosting projTransPosting;
+        super();
+
+        select firstonly AmountMST, Voucher, ProjTransDate from projTransPosting
+                order by projTransPosting.ProjTransDate desc
+            where projTransPosting.TransId == this.TransId
+               && projTransPosting.ProjId == this.ProjectId
+               && projTransPosting.ActivityNumber == this.ActivityNumber;
+
+        this.Voucher                    = projTransPosting.Voucher;
+        this.TotalProjectCostAmountCur  = projTransPosting.AmountMst;
+        this.ProjTransDate              = projTransPosting.ProjTransDate;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+	<ConfigurationKey>LogisticsBasic</ConfigurationKey>
+	<Label>@SYS954</Label>
+	<SubscriberAccessLevel>
+		<Read>Allow</Read>
+	</SubscriberAccessLevel>
+	<EntityCategory>Transaction</EntityCategory>
+	<IsPublic>Yes</IsPublic>
+	<IsReadOnly>Yes</IsReadOnly>
+	<PrimaryCompanyContext>DataAreaId</PrimaryCompanyContext>
+	<PrimaryKey>EntityKey</PrimaryKey>
+	<PublicCollectionName>NewProjTransPostingDatas</PublicCollectionName>
+	<PublicEntityName>NewProjTransPostingData</PublicEntityName>
+	<DeleteActions />
+	<FieldGroups>
+		<AxTableFieldGroup>
+			<Name>AutoReport</Name>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoLookup</Name>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoIdentification</Name>
+			<AutoPopulate>Yes</AutoPopulate>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoSummary</Name>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoBrowse</Name>
+			<Fields />
+		</AxTableFieldGroup>
+	</FieldGroups>
+	<Fields>
+		<AxDataEntityViewField xmlns=""
+			i:type="AxDataEntityViewMappedField">
+			<Name>ProjectId</Name>
+			<DataField>ProjId</DataField>
+			<DataSource>SBProjTransPostingLatestView</DataSource>
+		</AxDataEntityViewField>
+		<AxDataEntityViewField xmlns=""
+			i:type="AxDataEntityViewMappedField">
+			<Name>TransId</Name>
+			<DataField>TransId</DataField>
+			<DataSource>SBProjTransPostingLatestView</DataSource>
+		</AxDataEntityViewField>
+		<AxDataEntityViewField xmlns=""
+			i:type="AxDataEntityViewMappedField">
+			<Name>TransTxt</Name>
+			<DataField>Txt</DataField>
+			<DataSource>SBProjTransPostingLatestView</DataSource>
+		</AxDataEntityViewField>
+		<AxDataEntityViewField xmlns=""
+			i:type="AxDataEntityViewMappedField">
+			<Name>PurchaseOrderNumber</Name>
+			<DataField>PurchaseOrderNumber</DataField>
+			<DataSource>SBProjTransPostingLatestView</DataSource>
+		</AxDataEntityViewField>
+		<AxDataEntityViewField xmlns=""
+			i:type="AxDataEntityViewMappedField">
+			<Name>LineNumber</Name>
+			<DataField>LineNumber</DataField>
+			<DataSource>SBProjTransPostingLatestView</DataSource>
+		</AxDataEntityViewField>
+		<AxDataEntityViewField xmlns=""
+			i:type="AxDataEntityViewMappedField">
+			<Name>ActivityNumber</Name>
+			<DataField>ActivityNumber</DataField>
+			<DataSource>SBProjTransPostingLatestView</DataSource>
+		</AxDataEntityViewField>
+		<AxDataEntityViewField xmlns=""
+			i:type="AxDataEntityViewMappedField">
+			<Name>TransactionDate</Name>
+			<DataField>TransDate</DataField>
+			<DataSource>SBProjTransPostingLatestView</DataSource>
+		</AxDataEntityViewField>
+		<AxDataEntityViewField xmlns=""
+			i:type="AxDataEntityViewMappedField">
+			<Name>CurrencyIdCost</Name>
+			<DataField>CurrencyIdCost</DataField>
+			<DataSource>SBProjTransPostingLatestView</DataSource>
+		</AxDataEntityViewField>
+		<AxDataEntityViewField xmlns=""
+			i:type="AxDataEntityViewMappedField">
+			<Name>TotalCostAmountCur</Name>
+			<DataField>TotalCostAmountCur</DataField>
+			<DataSource>SBProjTransPostingLatestView</DataSource>
+		</AxDataEntityViewField>
+		<AxDataEntityViewField xmlns=""
+			i:type="AxDataEntityViewUnmappedFieldReal">
+			<Name>TotalProjectCostAmountCur</Name>
+			<ExtendedDataType>AmountMSTDebCred</ExtendedDataType>
+			<IsComputedField>No</IsComputedField>
+		</AxDataEntityViewField>
+		<AxDataEntityViewField xmlns=""
+			i:type="AxDataEntityViewMappedField">
+			<Name>CategoryId</Name>
+			<DataField>CategoryId</DataField>
+			<DataSource>SBProjTransPostingLatestView</DataSource>
+		</AxDataEntityViewField>
+		<AxDataEntityViewField xmlns=""
+			i:type="AxDataEntityViewMappedField">
+			<Name>LinePropertyId</Name>
+			<DataField>LinePropertyId</DataField>
+			<DataSource>SBProjTransPostingLatestView</DataSource>
+		</AxDataEntityViewField>
+		<AxDataEntityViewField xmlns=""
+			i:type="AxDataEntityViewMappedField">
+			<Name>ItemId</Name>
+			<DataField>ItemId</DataField>
+			<DataSource>SBProjTransPostingLatestView</DataSource>
+		</AxDataEntityViewField>
+		<AxDataEntityViewField xmlns=""
+			i:type="AxDataEntityViewMappedField">
+			<Name>Quantity</Name>
+			<DataField>Qty</DataField>
+			<DataSource>SBProjTransPostingLatestView</DataSource>
+		</AxDataEntityViewField>
+		<AxDataEntityViewField xmlns=""
+			i:type="AxDataEntityViewMappedField">
+			<Name>CurrencyId</Name>
+			<DataField>CurrencyId</DataField>
+			<DataSource>SBProjTransPostingLatestView</DataSource>
+		</AxDataEntityViewField>
+		<AxDataEntityViewField xmlns=""
+			i:type="AxDataEntityViewMappedField">
+			<Name>VendorAccount</Name>
+			<DataField>VendorAccount</DataField>
+			<DataSource>SBProjTransPostingLatestView</DataSource>
+		</AxDataEntityViewField>
+		<AxDataEntityViewField xmlns=""
+			i:type="AxDataEntityViewMappedField">
+			<Name>VendorName</Name>
+			<DataField>VendorName</DataField>
+			<DataSource>SBProjTransPostingLatestView</DataSource>
+		</AxDataEntityViewField>
+		<AxDataEntityViewField xmlns=""
+			i:type="AxDataEntityViewUnmappedFieldString">
+			<Name>Voucher</Name>
+			<ExtendedDataType>Voucher</ExtendedDataType>
+			<IsComputedField>No</IsComputedField>
+		</AxDataEntityViewField>
+		<AxDataEntityViewField xmlns=""
+			i:type="AxDataEntityViewUnmappedFieldDate">
+			<Name>ProjTransDate</Name>
+			<ExtendedDataType>ProjTransDate</ExtendedDataType>
+			<IsComputedField>No</IsComputedField>
+		</AxDataEntityViewField>
+	</Fields>
+	<Keys>
+		<AxDataEntityViewKey>
+			<Name>EntityKey</Name>
+			<Fields />
+		</AxDataEntityViewKey>
+	</Keys>
+	<Mappings />
+	<Ranges />
+	<Relations />
+	<StateMachines />
+	<ViewMetadata>
+		<Name>Metadata</Name>
+		<SourceCode>
+			<Methods>
+				<Method>
+					<Name>classDeclaration</Name>
+					<Source><![CDATA[
+[Query]
+public class Metadata extends QueryRun
+{
+}
+]]></Source>
+				</Method>
+			</Methods>
+		</SourceCode>
+		<DataSources>
+			<AxQuerySimpleRootDataSource>
+				<Name>SBProjTransPostingLatestView</Name>
+				<DynamicFields>Yes</DynamicFields>
+				<Table>SBProjTransPostingLatestView</Table>
+				<DataSources />
+				<DerivedDataSources />
+				<Fields />
+				<Ranges />
+				<GroupBy />
+				<Having />
+				<OrderBy />
+			</AxQuerySimpleRootDataSource>
+		</DataSources>
+	</ViewMetadata>
+</AxDataEntityView>

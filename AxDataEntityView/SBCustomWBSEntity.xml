@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxDataEntityView xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>SBCustomWBSEntity</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+public class SBCustomWBSEntity extends common
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>getProjWBSId</Name>
+				<Source><![CDATA[
+    /// <summary>
+    ///
+    /// </summary>
+    public static str getProjWBSId()
+    {
+        return strFmt("CAST(%1 AS VARCHAR(50)) + '-' + CAST(%2 AS VARCHAR(50))",
+                        SysComputedColumn::returnField(tableStr(SBCustomWBSEntity), tableStr(ProjTable), fieldStr(ProjTable, ProjId)),
+                        SysComputedColumn::returnField(tableStr(SBCustomWBSEntity), tableStr(ProjPlanVersion), fieldStr(ProjPlanVersion, PathId)));
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>getHierarchyLevelId</Name>
+				<Source><![CDATA[
+    public static str getHierarchyLevelId()
+    {
+        return strFmt("CAST(%1 AS VARCHAR(50)) + '-' + CAST(%2 AS VARCHAR(50))",
+                        SysComputedColumn::returnField(tableStr(SBCustomWBSEntity), tableStr(ProjPlanVersion), fieldStr(ProjPlanVersion, HierarchyId)),
+                        SysComputedColumn::returnField(tableStr(SBCustomWBSEntity), tableStr(ProjPlanVersion), fieldStr(ProjPlanVersion, HierarchyLevel)));
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+	<ConfigurationKey>Project</ConfigurationKey>
+	<Label>@SYS338946</Label>
+	<SubscriberAccessLevel>
+		<Read>Allow</Read>
+	</SubscriberAccessLevel>
+	<IsPublic>Yes</IsPublic>
+	<PrimaryCompanyContext>DataAreaId</PrimaryCompanyContext>
+	<PrimaryKey>EntityKey</PrimaryKey>
+	<PublicCollectionName>SBCustomWBSEntity</PublicCollectionName>
+	<PublicEntityName>SBCustomWBSEntity</PublicEntityName>
+	<DeleteActions />
+	<FieldGroups>
+		<AxTableFieldGroup>
+			<Name>AutoReport</Name>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoLookup</Name>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoIdentification</Name>
+			<AutoPopulate>Yes</AutoPopulate>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoSummary</Name>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoBrowse</Name>
+			<Fields />
+		</AxTableFieldGroup>
+	</FieldGroups>
+	<Fields>
+		<AxDataEntityViewField xmlns=""
+			i:type="AxDataEntityViewMappedField">
+			<Name>ProjId</Name>
+			<Mandatory>Yes</Mandatory>
+			<DataField>ProjId</DataField>
+			<DataSource>ProjTable</DataSource>
+		</AxDataEntityViewField>
+		<AxDataEntityViewField xmlns=""
+			i:type="AxDataEntityViewMappedField">
+			<Name>ProjectName</Name>
+			<Mandatory>Yes</Mandatory>
+			<DataField>Name</DataField>
+			<DataSource>ProjTable</DataSource>
+		</AxDataEntityViewField>
+		<AxDataEntityViewField xmlns=""
+			i:type="AxDataEntityViewUnmappedFieldString">
+			<Name>ProjWBSId</Name>
+			<Mandatory>No</Mandatory>
+			<ComputedFieldMethod>getProjWBSId</ComputedFieldMethod>
+			<StringSize>255</StringSize>
+		</AxDataEntityViewField>
+		<AxDataEntityViewField xmlns=""
+			i:type="AxDataEntityViewMappedField">
+			<Name>PathId</Name>
+			<Mandatory>No</Mandatory>
+			<DataField>PathId</DataField>
+			<DataSource>ProjPlanVersion</DataSource>
+		</AxDataEntityViewField>
+		<AxDataEntityViewField xmlns=""
+			i:type="AxDataEntityViewMappedField">
+			<Name>HierarchyId</Name>
+			<Mandatory>No</Mandatory>
+			<DataField>HierarchyId</DataField>
+			<DataSource>ProjPlanVersion</DataSource>
+		</AxDataEntityViewField>
+		<AxDataEntityViewField xmlns=""
+			i:type="AxDataEntityViewMappedField">
+			<Name>HierarchyLevel</Name>
+			<Mandatory>No</Mandatory>
+			<DataField>HierarchyLevel</DataField>
+			<DataSource>ProjPlanVersion</DataSource>
+		</AxDataEntityViewField>
+		<AxDataEntityViewField xmlns=""
+			i:type="AxDataEntityViewUnmappedFieldString">
+			<Name>HierarchyLevelId</Name>
+			<Mandatory>No</Mandatory>
+			<ComputedFieldMethod>getHierarchyLevelId</ComputedFieldMethod>
+			<StringSize>255</StringSize>
+		</AxDataEntityViewField>
+		<AxDataEntityViewField xmlns=""
+			i:type="AxDataEntityViewMappedField">
+			<Name>TaskName</Name>
+			<Mandatory>No</Mandatory>
+			<DataField>TaskName</DataField>
+			<DataSource>ProjPlanVersion</DataSource>
+		</AxDataEntityViewField>
+		<AxDataEntityViewField xmlns=""
+			i:type="AxDataEntityViewMappedField">
+			<Name>WBSRecId</Name>
+			<Mandatory>No</Mandatory>
+			<DataField>RecId</DataField>
+			<DataSource>ProjPlanVersion</DataSource>
+		</AxDataEntityViewField>
+		<AxDataEntityViewField xmlns=""
+			i:type="AxDataEntityViewMappedField">
+			<Name>VersionType</Name>
+			<Mandatory>No</Mandatory>
+			<DataField>VersionType</DataField>
+			<DataSource>ProjPlanVersionDetail</DataSource>
+		</AxDataEntityViewField>
+		<AxDataEntityViewField xmlns=""
+			i:type="AxDataEntityViewMappedField">
+			<Name>ActivityNumber</Name>
+			<Mandatory>No</Mandatory>
+			<DataField>ActivityNumber</DataField>
+			<DataSource>smmActivities</DataSource>
+		</AxDataEntityViewField>
+		<AxDataEntityViewField xmlns=""
+			i:type="AxDataEntityViewMappedField">
+			<Name>ActivityPurpose</Name>
+			<Mandatory>No</Mandatory>
+			<DataField>Purpose</DataField>
+			<DataSource>smmActivities</DataSource>
+		</AxDataEntityViewField>
+	</Fields>
+	<Keys>
+		<AxDataEntityViewKey>
+			<Name>EntityKey</Name>
+			<Fields>
+				<AxDataEntityViewKeyField>
+					<DataField>HierarchyId</DataField>
+				</AxDataEntityViewKeyField>
+			</Fields>
+		</AxDataEntityViewKey>
+	</Keys>
+	<Mappings />
+	<Ranges />
+	<Relations />
+	<StateMachines />
+	<ViewMetadata>
+		<Name>Metadata</Name>
+		<SourceCode>
+			<Methods>
+				<Method>
+					<Name>classDeclaration</Name>
+					<Source><![CDATA[
+[Query]
+public class Metadata extends QueryRun
+{
+}
+]]></Source>
+				</Method>
+			</Methods>
+		</SourceCode>
+		<DataSources>
+			<AxQuerySimpleRootDataSource>
+				<Name>ProjPlanVersion</Name>
+				<DynamicFields>Yes</DynamicFields>
+				<IsReadOnly>Yes</IsReadOnly>
+				<Table>ProjPlanVersion</Table>
+				<DataSources>
+					<AxQuerySimpleEmbeddedDataSource>
+						<Name>ProjPlanVersionDetail</Name>
+						<ChangeTrackingEnabled>No</ChangeTrackingEnabled>
+						<DynamicFields>Yes</DynamicFields>
+						<IsReadOnly>Yes</IsReadOnly>
+						<Table>ProjPlanVersionDetail</Table>
+						<DataSources />
+						<DerivedDataSources />
+						<Fields />
+						<Ranges />
+						<JoinMode>OuterJoin</JoinMode>
+						<Relations>
+							<AxQuerySimpleDataSourceRelation>
+								<Name>QueryDataSourceRelation1</Name>
+								<Field>HierarchyId</Field>
+								<JoinDataSource>ProjPlanVersion</JoinDataSource>
+								<RelatedField>HierarchyId</RelatedField>
+							</AxQuerySimpleDataSourceRelation>
+						</Relations>
+					</AxQuerySimpleEmbeddedDataSource>
+					<AxQuerySimpleEmbeddedDataSource>
+						<Name>ProjTable</Name>
+						<DynamicFields>Yes</DynamicFields>
+						<IsReadOnly>Yes</IsReadOnly>
+						<Table>ProjTable</Table>
+						<DataSources />
+						<DerivedDataSources />
+						<Fields />
+						<Ranges />
+						<Relations>
+							<AxQuerySimpleDataSourceRelation>
+								<Name>QueryDataSourceRelation1</Name>
+								<Field>ProjId</Field>
+								<JoinDataSource>ProjPlanVersionDetail</JoinDataSource>
+								<RelatedField>ProjId</RelatedField>
+							</AxQuerySimpleDataSourceRelation>
+						</Relations>
+					</AxQuerySimpleEmbeddedDataSource>
+					<AxQuerySimpleEmbeddedDataSource>
+						<Name>HierarchyTreeTable</Name>
+						<DynamicFields>Yes</DynamicFields>
+						<IsReadOnly>Yes</IsReadOnly>
+						<Table>HierarchyTreeTable</Table>
+						<DataSources>
+							<AxQuerySimpleEmbeddedDataSource>
+								<Name>smmActivities</Name>
+								<DynamicFields>Yes</DynamicFields>
+								<IsReadOnly>Yes</IsReadOnly>
+								<Table>smmActivities</Table>
+								<DataSources />
+								<DerivedDataSources />
+								<Fields />
+								<Ranges />
+								<JoinMode>OuterJoin</JoinMode>
+								<Relations>
+									<AxQuerySimpleDataSourceRelation>
+										<Name>QueryDataSourceRelation1</Name>
+										<Field>RefRecId</Field>
+										<JoinDataSource>HierarchyTreeTable</JoinDataSource>
+										<RelatedField>RecId</RelatedField>
+									</AxQuerySimpleDataSourceRelation>
+								</Relations>
+							</AxQuerySimpleEmbeddedDataSource>
+						</DataSources>
+						<DerivedDataSources />
+						<Fields />
+						<Ranges />
+						<JoinMode>OuterJoin</JoinMode>
+						<Relations>
+							<AxQuerySimpleDataSourceRelation>
+								<Name>QueryDataSourceRelation1</Name>
+								<Field>HierarchyTreeTableRefRecId</Field>
+								<JoinDataSource>ProjPlanVersion</JoinDataSource>
+								<RelatedField>RecId</RelatedField>
+							</AxQuerySimpleDataSourceRelation>
+						</Relations>
+					</AxQuerySimpleEmbeddedDataSource>
+				</DataSources>
+				<DerivedDataSources />
+				<Fields />
+				<Ranges />
+				<GroupBy />
+				<Having />
+				<OrderBy />
+			</AxQuerySimpleRootDataSource>
+		</DataSources>
+	</ViewMetadata>
+</AxDataEntityView>

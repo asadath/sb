@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxView xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>SBInventTransferOrderWorkOrderDetailsView</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+public class SBInventTransferOrderWorkOrderDetailsView extends common
+{
+}
+
+]]></Declaration>
+		<Methods />
+	</SourceCode>
+	<DeveloperDocumentation>@SBLabel:SBInventTransferOrderWorkOrderDetatilViewDoc</DeveloperDocumentation>
+	<Label>@SBLabel:SBWODetails</Label>
+	<SubscriberAccessLevel>
+		<Read>Allow</Read>
+	</SubscriberAccessLevel>
+	<TitleField1>Asset</TitleField1>
+	<TitleField2>WorkOrderID</TitleField2>
+	<FieldGroups>
+		<AxTableFieldGroup>
+			<Name>AutoReport</Name>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoLookup</Name>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoIdentification</Name>
+			<AutoPopulate>Yes</AutoPopulate>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoSummary</Name>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoBrowse</Name>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>WorkOrderDetails</Name>
+			<Label>@EnterpriseAssetManagementMobile:EntAssetMobile003</Label>
+			<Fields>
+				<AxTableFieldGroupField>
+					<DataField>WorkOrderID</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>WorkOrderDescription</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>ExpectedStart</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>CreatedByWorkOrder</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>Asset</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>AssetName</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>FunctionalLocationId</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>FunctionalLocationName</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>Address</DataField>
+				</AxTableFieldGroupField>
+			</Fields>
+		</AxTableFieldGroup>
+	</FieldGroups>
+	<Fields>
+		<AxViewField xmlns=""
+			i:type="AxViewFieldBound">
+			<Name>InventTransIdReceive</Name>
+			<DataField>InventTransIdReceive</DataField>
+			<DataSource>InventTransferLine</DataSource>
+		</AxViewField>
+		<AxViewField xmlns=""
+			i:type="AxViewFieldBound">
+			<Name>MarkingRefInventTransOrigin</Name>
+			<DataField>MarkingRefInventTransOrigin</DataField>
+			<DataSource>InventTrans</DataSource>
+		</AxViewField>
+		<AxViewField xmlns=""
+			i:type="AxViewFieldBound">
+			<Name>JournalId</Name>
+			<DataField>JournalId</DataField>
+			<DataSource>InventJournalTrans</DataSource>
+		</AxViewField>
+		<AxViewField xmlns=""
+			i:type="AxViewFieldBound">
+			<Name>WorkOrderID</Name>
+			<Label>@WAX:WHSWorkCreateWorkOrderType_WorkOrder</Label>
+			<DataField>WorkOrderId</DataField>
+			<DataSource>EntAssetWorkOrderTable</DataSource>
+		</AxViewField>
+		<AxViewField xmlns=""
+			i:type="AxViewFieldBound">
+			<Name>WorkOrderDescription</Name>
+			<Label>@EnterpriseAssetManagementAppSuite:EntAsset181</Label>
+			<DataField>Description</DataField>
+			<DataSource>EntAssetWorkOrderTable</DataSource>
+		</AxViewField>
+		<AxViewField xmlns=""
+			i:type="AxViewFieldBound">
+			<Name>ExpectedStart</Name>
+			<DataField>ExpectedStart</DataField>
+			<DataSource>EntAssetWorkOrderTable</DataSource>
+		</AxViewField>
+		<AxViewField xmlns=""
+			i:type="AxViewFieldBound">
+			<Name>CreatedByWorkOrder</Name>
+			<Label>@SYS134058</Label>
+			<DataField>CreatedBy</DataField>
+			<DataSource>EntAssetWorkOrderTable</DataSource>
+		</AxViewField>
+		<AxViewField xmlns=""
+			i:type="AxViewFieldBound">
+			<Name>Asset</Name>
+			<Label>@SYS114344</Label>
+			<DataField>ObjectID</DataField>
+			<DataSource>EntAssetObjectTable</DataSource>
+		</AxViewField>
+		<AxViewField xmlns=""
+			i:type="AxViewFieldBound">
+			<Name>AssetName</Name>
+			<Label>@SYS114335</Label>
+			<DataField>Name</DataField>
+			<DataSource>EntAssetObjectTable</DataSource>
+		</AxViewField>
+		<AxViewField xmlns=""
+			i:type="AxViewFieldBound">
+			<Name>FunctionalLocationId</Name>
+			<Label>@EnterpriseAssetManagementAppSuite:EntAsset1591</Label>
+			<DataField>FunctionalLocationId</DataField>
+			<DataSource>EntAssetFunctionalLocation</DataSource>
+		</AxViewField>
+		<AxViewField xmlns=""
+			i:type="AxViewFieldBound">
+			<Name>FunctionalLocationName</Name>
+			<DataField>Name</DataField>
+			<DataSource>EntAssetFunctionalLocation</DataSource>
+		</AxViewField>
+		<AxViewField xmlns=""
+			i:type="AxViewFieldBound">
+			<Name>Address</Name>
+			<Label>@SYS124648</Label>
+			<DataField>Address</DataField>
+			<DataSource>LogisticsPostalAddress</DataSource>
+		</AxViewField>
+	</Fields>
+	<Indexes />
+	<Mappings />
+	<Relations />
+	<StateMachines />
+	<ViewMetadata>
+		<Name>Metadata</Name>
+		<SourceCode>
+			<Methods />
+		</SourceCode>
+		<DataSources>
+			<AxQuerySimpleRootDataSource>
+				<Name>InventTransferLine</Name>
+				<DynamicFields>Yes</DynamicFields>
+				<Table>InventTransferLine</Table>
+				<DataSources>
+					<AxQuerySimpleEmbeddedDataSource>
+						<Name>InventTransOrigin</Name>
+						<DynamicFields>Yes</DynamicFields>
+						<Table>InventTransOrigin</Table>
+						<DataSources>
+							<AxQuerySimpleEmbeddedDataSource>
+								<Name>InventTrans</Name>
+								<DynamicFields>Yes</DynamicFields>
+								<Table>InventTrans</Table>
+								<DataSources>
+									<AxQuerySimpleEmbeddedDataSource>
+										<Name>InventTransOriginJournal</Name>
+										<DynamicFields>Yes</DynamicFields>
+										<Table>InventTransOrigin</Table>
+										<DataSources>
+											<AxQuerySimpleEmbeddedDataSource>
+												<Name>InventJournalTrans</Name>
+												<DynamicFields>Yes</DynamicFields>
+												<Table>InventJournalTrans</Table>
+												<DataSources>
+													<AxQuerySimpleEmbeddedDataSource>
+														<Name>EntAssetWorkOrderLine</Name>
+														<DynamicFields>Yes</DynamicFields>
+														<Table>EntAssetWorkOrderLine</Table>
+														<DataSources>
+															<AxQuerySimpleEmbeddedDataSource>
+																<Name>EntAssetWorkOrderTable</Name>
+																<DynamicFields>Yes</DynamicFields>
+																<Table>EntAssetWorkOrderTable</Table>
+																<DataSources />
+																<DerivedDataSources />
+																<Fields />
+																<Ranges />
+																<JoinMode>OuterJoin</JoinMode>
+																<Relations>
+																	<AxQuerySimpleDataSourceRelation>
+																		<Name>QueryDataSourceRelation1</Name>
+																		<Field>WorkOrder</Field>
+																		<JoinDataSource>EntAssetWorkOrderLine</JoinDataSource>
+																		<RelatedField>RecId</RelatedField>
+																	</AxQuerySimpleDataSourceRelation>
+																</Relations>
+															</AxQuerySimpleEmbeddedDataSource>
+															<AxQuerySimpleEmbeddedDataSource>
+																<Name>EntAssetObjectTable</Name>
+																<DynamicFields>Yes</DynamicFields>
+																<Table>EntAssetObjectTable</Table>
+																<DataSources />
+																<DerivedDataSources />
+																<Fields />
+																<Ranges />
+																<JoinMode>OuterJoin</JoinMode>
+																<Relations>
+																	<AxQuerySimpleDataSourceRelation>
+																		<Name>QueryDataSourceRelation1</Name>
+																		<Field>Object</Field>
+																		<JoinDataSource>EntAssetWorkOrderLine</JoinDataSource>
+																		<RelatedField>RecId</RelatedField>
+																	</AxQuerySimpleDataSourceRelation>
+																</Relations>
+															</AxQuerySimpleEmbeddedDataSource>
+															<AxQuerySimpleEmbeddedDataSource>
+																<Name>EntAssetFunctionalLocation</Name>
+																<DynamicFields>Yes</DynamicFields>
+																<Table>EntAssetFunctionalLocation</Table>
+																<DataSources>
+																	<AxQuerySimpleEmbeddedDataSource>
+																		<Name>LogisticsPostalAddress</Name>
+																		<DynamicFields>Yes</DynamicFields>
+																		<Table>LogisticsPostalAddress</Table>
+																		<DataSources />
+																		<DerivedDataSources />
+																		<Fields />
+																		<Ranges />
+																		<JoinMode>OuterJoin</JoinMode>
+																		<Relations>
+																			<AxQuerySimpleDataSourceRelation>
+																				<Name>QueryDataSourceRelation1</Name>
+																				<Field>LogisticsLocation</Field>
+																				<JoinDataSource>EntAssetFunctionalLocation</JoinDataSource>
+																				<RelatedField>Location</RelatedField>
+																			</AxQuerySimpleDataSourceRelation>
+																		</Relations>
+																	</AxQuerySimpleEmbeddedDataSource>
+																</DataSources>
+																<DerivedDataSources />
+																<Fields />
+																<Ranges />
+																<JoinMode>OuterJoin</JoinMode>
+																<Relations>
+																	<AxQuerySimpleDataSourceRelation>
+																		<Name>QueryDataSourceRelation1</Name>
+																		<Field>FunctionalLocation</Field>
+																		<JoinDataSource>EntAssetWorkOrderLine</JoinDataSource>
+																		<RelatedField>RecId</RelatedField>
+																	</AxQuerySimpleDataSourceRelation>
+																</Relations>
+															</AxQuerySimpleEmbeddedDataSource>
+														</DataSources>
+														<DerivedDataSources />
+														<Fields />
+														<Ranges />
+														<FetchMode>OneToN</FetchMode>
+														<JoinMode>OuterJoin</JoinMode>
+														<Relations>
+															<AxQuerySimpleDataSourceRelation>
+																<Name>QueryDataSourceRelation2</Name>
+																<Field>ProjId</Field>
+																<JoinDataSource>InventJournalTrans</JoinDataSource>
+																<RelatedField>ProjId</RelatedField>
+															</AxQuerySimpleDataSourceRelation>
+															<AxQuerySimpleDataSourceRelation>
+																<Name>QueryDataSourceRelation3</Name>
+																<Field>ActivityNumber</Field>
+																<JoinDataSource>InventJournalTrans</JoinDataSource>
+																<RelatedField>ProjActivity</RelatedField>
+															</AxQuerySimpleDataSourceRelation>
+														</Relations>
+													</AxQuerySimpleEmbeddedDataSource>
+												</DataSources>
+												<DerivedDataSources />
+												<Fields />
+												<Ranges />
+												<FetchMode>OneToN</FetchMode>
+												<JoinMode>OuterJoin</JoinMode>
+												<Relations>
+													<AxQuerySimpleDataSourceRelation>
+														<Name>QueryDataSourceRelation1</Name>
+														<Field>InventTransId</Field>
+														<JoinDataSource>InventTransOriginJournal</JoinDataSource>
+														<RelatedField>InventTransId</RelatedField>
+													</AxQuerySimpleDataSourceRelation>
+												</Relations>
+											</AxQuerySimpleEmbeddedDataSource>
+										</DataSources>
+										<DerivedDataSources />
+										<Fields />
+										<Ranges />
+										<Relations>
+											<AxQuerySimpleDataSourceRelation>
+												<Name>QueryDataSourceRelation1</Name>
+												<Field>MarkingRefInventTransOrigin</Field>
+												<JoinDataSource>InventTrans</JoinDataSource>
+												<RelatedField>RecId</RelatedField>
+											</AxQuerySimpleDataSourceRelation>
+										</Relations>
+									</AxQuerySimpleEmbeddedDataSource>
+								</DataSources>
+								<DerivedDataSources />
+								<Fields />
+								<Ranges />
+								<Relations>
+									<AxQuerySimpleDataSourceRelation>
+										<Name>QueryDataSourceRelation1</Name>
+										<Field>RecId</Field>
+										<JoinDataSource>InventTransOrigin</JoinDataSource>
+										<RelatedField>InventTransOrigin</RelatedField>
+									</AxQuerySimpleDataSourceRelation>
+								</Relations>
+							</AxQuerySimpleEmbeddedDataSource>
+						</DataSources>
+						<DerivedDataSources />
+						<Fields />
+						<Ranges />
+						<Relations>
+							<AxQuerySimpleDataSourceRelation>
+								<Name>QueryDataSourceRelation1</Name>
+								<Field>InventTransIdReceive</Field>
+								<JoinDataSource>InventTransferLine</JoinDataSource>
+								<RelatedField>InventTransId</RelatedField>
+							</AxQuerySimpleDataSourceRelation>
+						</Relations>
+					</AxQuerySimpleEmbeddedDataSource>
+				</DataSources>
+				<DerivedDataSources />
+				<Fields />
+				<Ranges />
+				<GroupBy />
+				<Having />
+				<OrderBy />
+			</AxQuerySimpleRootDataSource>
+		</DataSources>
+	</ViewMetadata>
+</AxView>
